@@ -1,15 +1,14 @@
 import * as vscode from 'vscode';
 import "typescript";
+import { prettierConfigCommand } from "constants";
 
 var statusBar : vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
 
-	const prettierConfigCommand = vscode.commands.registerCommand('prettier-config.prettierConfig', () => {
-		
-	});
+	vscode.commands.registerCommand(prettierConfigCommand, () => {
 
-	context.subscriptions.push(prettierConfigCommand);
+	});
 }
 
 function updateStatusBar() : void {
