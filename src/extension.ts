@@ -31,17 +31,17 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		})
 	);
-		statusBar = vscode.window.createStatusBarItem(
-			vscode.StatusBarAlignment.Right,
-			100
-		);
-		statusBar.command = prettierConfigCommand;
-		context.subscriptions.push(statusBar);
-		context.subscriptions.push(
-			vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
-			vscode.window.onDidChangeTextEditorSelection(updateStatusBar)
-		);
-		updateStatusBar();
+	statusBar = vscode.window.createStatusBarItem(
+		vscode.StatusBarAlignment.Right,
+		100
+	);
+	statusBar.command = prettierConfigCommand;
+	context.subscriptions.push(statusBar);
+	context.subscriptions.push(
+		vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
+		vscode.window.onDidChangeTextEditorSelection(updateStatusBar)
+	);
+	updateStatusBar();
 }
 
 function updateStatusBar() : void {
