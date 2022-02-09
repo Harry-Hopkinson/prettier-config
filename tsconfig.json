@@ -2,14 +2,9 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "esnext",
-        "lib": [
-            "ES2019"
-        ],
+        "lib": ["ES2019"],
         "sourceMap": true,
         "rootDir": "src"
     },
-    "exclude": [
-        "node_modules",
-        ".vscode-test"
-    ]
+    "exclude": ["node_modules", ".vscode-test"]
 }

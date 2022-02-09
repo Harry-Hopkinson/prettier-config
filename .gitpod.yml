@@ -1,5 +1,5 @@
 tasks:
-  - init: |
-      echo 'TODO: build project'
-    command: |
-      echo 'TODO: start app'
+    - init: |
+          echo 'TODO: build project'
+      command: |
+          echo 'TODO: start app'
