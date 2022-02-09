@@ -15,12 +15,12 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onCommand:prettier-config.helloWorld"
+    "onCommand:prettier-config.prettierConfig"
   ],
       "contributes": {
       "commands": [
         {
-          "command": "prettier-config.helloWorld",
+          "command": "prettier-config.prettierConfig",
           "title": "Hello World"
         }
       ]
