@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.64.0"
   },
+  "type" : "commonjs",
   "publisher": "HarryHopkinson",
   "categories": [
     "Other",

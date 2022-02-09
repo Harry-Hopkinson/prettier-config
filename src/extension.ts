@@ -30,6 +30,18 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showErrorMessage("Generating a Prettier Config Failed. Please use on a JavaScript or JSON document.");
 		}
 	});
+
+	statusBar = vscode.window.createStatusBarItem(
+		vscode.StatusBarAlignment.Right,
+		100
+	);
+	statusBar.command = prettierConfigCommand;
+	context.subscriptions.push(statusBar);
+	context.subscriptions.push(
+		vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
+		vscode.window.onDidChangeTextEditorSelection(updateStatusBar)
+	);
+	updateStatusBar();
 }
 
 function updateStatusBar() : void {
