@@ -16,7 +16,7 @@
         "Programming Languages"
     ],
     "activationEvents": [
-        "onStartupFinished"
+        "*"
     ],
     "contributes": {
         "commands": [

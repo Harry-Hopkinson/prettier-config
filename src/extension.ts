@@ -1,45 +1,45 @@
 import * as vscode from "vscode";
 import {
-    prettierConfigCommand,
-    activeEditor,
-    documentFileType,
+    activeEditor
 } from "./constants";
-import { javascript } from "./javscript";
-import { json } from "./json";
 
 var statusBar: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
-    context.subscriptions.push(
-        vscode.commands.registerCommand(prettierConfigCommand, () => {
-            if (activeEditor) {
-            	if (documentFileType === "javscript") {
-                    if (activeEditor.document.getText().length === 0) {
-                    	javascript();
-                    } else {
-                        vscode.window.showErrorMessage(
-                        	"Generating a Prettier Config Failed. Please use on an empty document.",
-                        );
-                    }
-                } else if (documentFileType === "json") {
-                    if (activeEditor.document.getText().length === 0) {
-                        json();
-                    } else {
-                        vscode.window.showErrorMessage(
-                            "Generating a Prettier Config Failed. Please use on an empty document.",
-                        );
-                    }
-                }
-            } else {
-            	deactivate();
-            }
-        }),
-    );
+	context.subscriptions.push(
+        vscode.commands.registerCommand("prettier-config.prettierConfig", async () => {
+            const fileType = await vscode.window.showInformationMessage(
+				"Which file to generate the prettier config for?",
+				"JavaScript",
+				"JSON"
+			);
+			if (fileType === "JavaScript") {
+				activeEditor.edit(
+					(edit: { insert: (arg0: any, arg1: string) => void }) => {
+						edit.insert(
+							new vscode.Position(0, 0),
+							`module.exports = {\n   singleQuote: true,\n   printWidth: 120,\n   tabWidth: 4,\n   trailingComma: all,\n   endOfLine: auto\n};`,
+						);
+					},
+				);
+			} 
+			else if (fileType === "JSON") {
+				activeEditor.edit(
+					(edit: { insert: (arg0: any, arg1: string) => void }) => {
+						edit.insert(
+							new vscode.Position(0, 0),
+							`{\n   "singleQuote": true,\n   "printWidth": 120,\n   "tabWidth": 4,\n   "trailingComma": "all",\n   "endOfLine": "auto"\n}`,
+						);
+					},
+				);
+			}
+		})
+	);
     statusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
         100,
     );
-    statusBar.command = prettierConfigCommand;
+    statusBar.command = "prettier-config.prettierConfig";
     context.subscriptions.push(statusBar);
     context.subscriptions.push(
         vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
