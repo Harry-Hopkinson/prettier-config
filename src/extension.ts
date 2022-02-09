@@ -1,15 +1,22 @@
 import * as vscode from 'vscode';
+import "typescript";
+
+var statusBar : vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
 
-	let disposable = vscode.commands.registerCommand('prettier-config.prettierConfig', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from prettier-config!');
+	const prettierConfigCommand = vscode.commands.registerCommand('prettier-config.prettierConfig', () => {
+		
 	});
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(prettierConfigCommand);
 }
 
-// this method is called when your extension is deactivated
-export function deactivate() {}
+function updateStatusBar() : void {
+	statusBar.text = `$(edit) Prettier Config`;
+	statusBar.show();
+}
+
+function deactivate() {
+	statusBar.dispose();
+}
