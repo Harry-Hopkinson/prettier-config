@@ -2,11 +2,10 @@
   "name": "prettier-config",
   "version": "1.0.0",
   "description": "A vscode extension that generates a prettier config file.",
-  "main": "src/extension.ts",
+  "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.64.0"
   },
-  "type" : "commonjs",
   "publisher": "HarryHopkinson",
   "categories": [
     "Other",
