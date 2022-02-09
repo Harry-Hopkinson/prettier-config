@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
-import "typescript";
 import { prettierConfigCommand, activeEditor, documentFileType } from './constants';
+import { javascript } from './javscript';
+import { json } from "./json";
 
 var statusBar : vscode.StatusBarItem;
 
@@ -10,12 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (activeEditor) {
 			if (documentFileType === "javscript") {
 				if (activeEditor.document.getText().length === 0) {
-					activeEditor.edit((edit: { insert: (arg0: any, arg1: string) => void; }) => {
-						edit.insert(
-							new vscode.Position(0, 0),
-							`// JavaScript file\n`
-						);
-					});
+					javascript();
 				}
 				else {
 					vscode.window.showErrorMessage("Generating a Prettier Config Failed. Please use on an empty document.");
@@ -23,12 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 			else if (documentFileType === "json") {
 				if (activeEditor.document.getText().length === 0) {
-					activeEditor.edit((edit: { insert: (arg0: any, arg1: string) => void; }) => {
-						edit.insert(
-							new vscode.Position(0, 0),
-							`// JSON file\n`
-						);
-					});
+					json();
 				}
 				else {
 					vscode.window.showErrorMessage("Generating a Prettier Config Failed. Please use on an empty document.");
