@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 			else {
-				statusBar.dispose();
+				deactivate();
 			}
 		})
 	);
