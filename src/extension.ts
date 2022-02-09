@@ -13,20 +13,22 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(prettierConfigCommand, () => {
       if (activeEditor) {
-        if (documentFileType === "javscript") {
+    	if (documentFileType === "javscript") {
           if (activeEditor.document.getText().length === 0) {
             javascript();
-          } else {
-            vscode.window.showErrorMessage(
+          } 
+		  else {
+        	vscode.window.showErrorMessage(
               "Generating a Prettier Config Failed. Please use on an empty document.",
             );
           }
         } else if (documentFileType === "json") {
           if (activeEditor.document.getText().length === 0) {
-            json();
-          } else {
+        	json();
+          } 
+		  else {
             vscode.window.showErrorMessage(
-              "Generating a Prettier Config Failed. Please use on an empty document.",
+            	"Generating a Prettier Config Failed. Please use on an empty document.",
             );
           }
         }
@@ -42,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
   statusBar.command = prettierConfigCommand;
   context.subscriptions.push(statusBar);
   context.subscriptions.push(
-    vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
+	vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
     vscode.window.onDidChangeTextEditorSelection(updateStatusBar),
   );
   updateStatusBar();
