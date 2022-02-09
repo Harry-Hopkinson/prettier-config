@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { TextDocument } from "vscode";
 import {
     activeEditor
 } from "./constants";
@@ -9,29 +10,47 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
         vscode.commands.registerCommand("prettier-config.prettierConfig", async () => {
             const fileType = await vscode.window.showInformationMessage(
-				"Which file to generate the prettier config for?",
-				"JavaScript",
+				"Which file to generate the Prettier Config for?",
+				"Javascript",
 				"JSON"
 			);
-			if (fileType === "JavaScript") {
-				activeEditor.edit(
-					(edit: { insert: (arg0: any, arg1: string) => void }) => {
-						edit.insert(
-							new vscode.Position(0, 0),
-							`module.exports = {\n   singleQuote: true,\n   printWidth: 120,\n   tabWidth: 4,\n   trailingComma: all,\n   endOfLine: auto\n};`,
-						);
-					},
-				);
-			} 
-			else if (fileType === "JSON") {
-				activeEditor.edit(
-					(edit: { insert: (arg0: any, arg1: string) => void }) => {
-						edit.insert(
-							new vscode.Position(0, 0),
-							`{\n   "singleQuote": true,\n   "printWidth": 120,\n   "tabWidth": 4,\n   "trailingComma": "all",\n   "endOfLine": "auto"\n}`,
-						);
-					},
-				);
+			if (fileType === "Javascript" || fileType === undefined) {
+				if (activeEditor) {
+					activeEditor.edit(
+						(edit: { insert: (arg0: any, arg1: string) => void }) => {
+							edit.insert(
+								new vscode.Position(0, 0),
+								`module.exports = {\n   singleQuote: true,\n   printWidth: 120,\n   tabWidth: 4,\n   trailingComma: all,\n   endOfLine: auto\n};`,
+							);
+						},
+					);
+				}
+				else {
+					const newDocument = await vscode.workspace.openTextDocument({
+						language: "javascript",
+						content: `module.exports = {\n   singleQuote: true,\n   printWidth: 120,\n   tabWidth: 4,\n   trailingComma: all,\n   endOfLine: auto\n};`,
+					});
+					await vscode.window.showTextDocument(newDocument);
+				}
+			}
+			else if (fileType === "JSON" || fileType === undefined) {
+				if (activeEditor) {
+					activeEditor.edit(
+						(edit: { insert: (arg0: any, arg1: string) => void }) => {
+							edit.insert(
+								new vscode.Position(0, 0),
+								`{\n   "singleQuote": true,\n   "printWidth": 120,\n   "tabWidth": 4,\n   "trailingComma": "all",\n   "endOfLine": "auto"\n}`,
+							);
+						},
+					);
+				}
+				else {
+					const newDocument: TextDocument = await vscode.workspace.openTextDocument({
+						language: "json",
+						content: `{\n   "singleQuote": true,\n   "printWidth": 120,\n   "tabWidth": 4,\n   "trailingComma": "all",\n   "endOfLine": "auto"\n}`,
+					});
+					await vscode.window.showTextDocument(newDocument);
+				}
 			}
 		})
 	);

@@ -1,8 +1,7 @@
-const prettierConfig = module.exports = {
+module.exports = {
    singleQuote: true,
    printWidth: 120,
    tabWidth: 4,
    trailingComma: all,
    endOfLine: auto
 };
-export const prettierConfig;
