@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
             javascript();
           } else {
             vscode.window.showErrorMessage(
-              "Generating a Prettier Config Failed. Please use on an empty document."
+              "Generating a Prettier Config Failed. Please use on an empty document.",
             );
           }
         } else if (documentFileType === "json") {
@@ -26,24 +26,24 @@ export function activate(context: vscode.ExtensionContext) {
             json();
           } else {
             vscode.window.showErrorMessage(
-              "Generating a Prettier Config Failed. Please use on an empty document."
+              "Generating a Prettier Config Failed. Please use on an empty document.",
             );
           }
         }
       } else {
-		deactivate()
+        deactivate();
       }
-    })
+    }),
   );
   statusBar = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
-    100
+    100,
   );
   statusBar.command = prettierConfigCommand;
   context.subscriptions.push(statusBar);
   context.subscriptions.push(
     vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
-    vscode.window.onDidChangeTextEditorSelection(updateStatusBar)
+    vscode.window.onDidChangeTextEditorSelection(updateStatusBar),
   );
   updateStatusBar();
 }
