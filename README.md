@@ -1,3 +1,10 @@
-# prettier-config
+<h1 align="center">
+  <br>
+    <img src="https://raw.githubusercontent.com/Harry-Hopkinson/prettier-config/master/images/icon.png">
+  </a>
+  <br>
+  Prettier Config
+  <br>
+</h1>
 
-A vscode extension that generates a prettier config file.
+<h4 align="center">A vscode extension that generates a Prettier Config based on your Preference.</h4>
