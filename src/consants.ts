@@ -1,1 +1,0 @@
-export const prettierConfigCommand = "prettier-config.prettierConfig";
