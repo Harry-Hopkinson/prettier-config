@@ -11,7 +11,7 @@ export const json = activeEditor.edit(
             "tabWidth": 4,
             "trailingComma": "all",
             "endOfLine": "auto"
-        }`,
+        }`
     );
-  },
+  }
 );
