@@ -1,21 +1,20 @@
 import * as vscode from "vscode";
 
 var statusBar: vscode.StatusBarItem;
-var activeEditor: any = vscode.window.activeTextEditor;
+var textEditor : vscode.TextEditor = vscode.window.activeTextEditor;
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
         vscode.commands.registerCommand("prettier-config.prettierConfig", async () => {
+			var activeEditor : vscode.TextEditor = vscode.window.activeTextEditor;
             const fileType = await vscode.window.showInformationMessage(
 				"Which file to generate the Prettier Config for?",
 				"Javascript",
 				"JSON"
 			);
-			updateCurrentEditor(activeEditor);
-			if (activeEditor.document.isDirty) {
-				activeEditor = vscode.window.activeTextEditor;
-			}
-			else {
+			var textEditor : vscode.TextEditor = vscode.window.activeTextEditor;
+			updateCurrentEditor(activeEditor, textEditor);
+			if (activeEditor && !textEditor.document.isDirty) {
 				if (fileType === "Javascript") {
 					if (activeEditor) {
 						activeEditor.edit(
@@ -27,9 +26,10 @@ export function activate(context: vscode.ExtensionContext) {
 							},
 						);
 					}
-					else {
-						vscode.window.showErrorMessage("Open an active document before running Prettier Config");
+					else if (!activeEditor) {
+						updateCurrentEditor(activeEditor, textEditor);
 					}
+					updateCurrentEditor(activeEditor, textEditor);
 				}
 				else if (fileType === "JSON") {
 					if (activeEditor) {
@@ -42,11 +42,22 @@ export function activate(context: vscode.ExtensionContext) {
 							},
 						);
 					}
-					else {
-						vscode.window.showErrorMessage("Open an active document before running Prettier Config");
+					else if (!activeEditor) {
+						updateCurrentEditor(activeEditor, textEditor);
 					}
+					updateCurrentEditor(activeEditor, textEditor);
 				}
 			}
+			else if (activeEditor && textEditor.document.isDirty) {
+				vscode.window.showInformationMessage("Please save your file before generating a Prettier Config");
+			}
+			else {
+				vscode.window.showErrorMessage("Please open a file before generating a Prettier Config");
+				updateCurrentEditor(activeEditor, textEditor);
+			}
+		}),
+		vscode.commands.registerCommand("prettier-config.prettierConfig.updateStatusBar", () => {
+			updateStatusBar();
 		})
 	);
     statusBar = vscode.window.createStatusBarItem(
@@ -60,6 +71,8 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.onDidChangeTextEditorSelection(updateStatusBar),
     );
     updateStatusBar();
+	var activeEditor : vscode.TextEditor = vscode.window.activeTextEditor;
+	updateCurrentEditor(activeEditor, textEditor);
 }
 
 function updateStatusBar(): void {
@@ -71,6 +84,7 @@ function deactivate() {
     statusBar.dispose();
 }
 
-function updateCurrentEditor(activeEditor) : void {
+function updateCurrentEditor(activeEditor: vscode.TextEditor, textEditor : vscode.TextEditor) : void {
 	activeEditor = vscode.window.activeTextEditor;
+	textEditor = vscode.window.activeTextEditor;
 }

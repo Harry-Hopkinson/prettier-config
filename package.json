@@ -28,6 +28,10 @@
             {
                 "command": "prettier-config.prettierConfig",
                 "title": "Prettier Config"
+            },
+            {
+                "command": "prettier-config.prettierConfig.updateStatusBar",
+                "title": "Update Status Bar"
             }
         ]
     },
