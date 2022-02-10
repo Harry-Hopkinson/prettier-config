@@ -1,6 +1,6 @@
 {
     "name": "prettier-configuration",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A vscode extension that generates a prettier config file.",
     "main": "./dist/extension.js",
     "repository": {
