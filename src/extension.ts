@@ -11,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
 				"Javascript",
 				"JSON"
 			);
+			updateCurrentEditor(activeEditor);
 			if (activeEditor.document.isDirty) {
 				activeEditor = vscode.window.activeTextEditor;
 			}
@@ -27,11 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 						);
 					}
 					else {
-						const newDocument = await vscode.workspace.openTextDocument({
-							language: "javascript",
-							content: `module.exports = {\n   singleQuote: true,\n   printWidth: 120,\n   tabWidth: 4,\n   trailingComma: all,\n   endOfLine: auto\n};`,
-						});
-						await vscode.window.showTextDocument(newDocument);
+						vscode.window.showErrorMessage("Open an active document before running Prettier Config");
 					}
 				}
 				else if (fileType === "JSON") {
@@ -46,11 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 						);
 					}
 					else {
-						const newDocument: vscode.TextDocument = await vscode.workspace.openTextDocument({
-							language: "json",
-							content: `{\n   "singleQuote": true,\n   "printWidth": 120,\n   "tabWidth": 4,\n   "trailingComma": "all",\n   "endOfLine": "auto"\n}`,
-						});
-						await vscode.window.showTextDocument(newDocument);
+						vscode.window.showErrorMessage("Open an active document before running Prettier Config");
 					}
 				}
 			}
@@ -76,4 +69,8 @@ function updateStatusBar(): void {
 
 function deactivate() {
     statusBar.dispose();
+}
+
+function updateCurrentEditor(activeEditor) : void {
+	activeEditor = vscode.window.activeTextEditor;
 }
