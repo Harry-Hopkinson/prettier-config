@@ -49,16 +49,18 @@ export function activate(context: vscode.ExtensionContext) {
                                     )
                                 );
                             }
-                            const printWidth = await vscode.window.showInputBox({
-                                prompt: "What is the print width?",
-                                placeHolder: "120",
-                                validateInput: (value: string) => {
-                                    if (value.length > 0) {
-                                        return null;
-                                    }
-                                    return "Please enter a number";
-                                },
-                            });
+                            const printWidth = await vscode.window.showInputBox(
+                                {
+                                    prompt: "What is the print width?",
+                                    placeHolder: "120",
+                                    validateInput: (value: string) => {
+                                        if (value.length > 0) {
+                                            return null;
+                                        }
+                                        return "Please enter a number";
+                                    },
+                                }
+                            );
                             if (printWidth) {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
@@ -67,7 +69,73 @@ export function activate(context: vscode.ExtensionContext) {
                                             new vscode.Position(0, 0)
                                         ),
                                         `printWidth: ${printWidth},\n};`
-                                )
+                                    )
+                                );
+                            }
+                            const tabWidth = await vscode.window.showInputBox({
+                                prompt: "What is the tab width?",
+                                placeHolder: "4",
+                                validateInput: (value: string) => {
+                                    if (value.length > 0) {
+                                        return null;
+                                    }
+                                    return "Please enter a number";
+                                },
+                            });
+                            if (tabWidth) {
+                                javascriptEditArray.push(
+                                    new vscode.TextEdit(
+                                        new vscode.Range(
+                                            new vscode.Position(0, 0),
+                                            new vscode.Position(0, 0)
+                                        ),
+                                        `tabWidth: ${tabWidth},\n};`
+                                    )
+                                );
+                            }
+                            const trailingComma =
+                                await vscode.window.showInformationMessage(
+                                    "Do you want to use trailing commas?",
+                                    "Yes",
+                                    "No"
+                                );
+                            if (trailingComma === "Yes") {
+                                javascriptEditArray.push(
+                                    new vscode.TextEdit(
+                                        new vscode.Range(
+                                            new vscode.Position(0, 0),
+                                            new vscode.Position(0, 0)
+                                        ),
+                                        `trailingComma: all,\n};`
+                                    )
+                                );
+                            }
+                            const endOfLine =
+                                await vscode.window.showInformationMessage(
+                                    "Do you want to use end of line?",
+                                    "Yes",
+                                    "No"
+                                );
+                            if (endOfLine === "Yes") {
+                                javascriptEditArray.push(
+                                    new vscode.TextEdit(
+                                        new vscode.Range(
+                                            new vscode.Position(0, 0),
+                                            new vscode.Position(0, 0)
+                                        ),
+                                        `endOfLine: "es5",\n};`
+                                    )
+                                );
+                            }
+                            const edit = await activeEditor.edit(
+                                (editBuilder) => {
+                                    javascriptEditArray.forEach((edit) =>
+                                        editBuilder.insert(
+                                            activeEditor.selection.start,
+                                            edit.newText
+                                        )
+                                    );
+                                }
                             );
                         } else if (!activeEditor) {
                             updateCurrentEditor(activeEditor, textEditor);
