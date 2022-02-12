@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`module.exports = {\n   singleQuote: true,\n`
+										`module.exports = {\n	singleQuote: true,\n`
 									)
 								);
 							} else {
@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`module.exports = {\n   singleQuote: false,\n`
+										`module.exports = {\n	singleQuote: false,\n`
 									)
 								);
 							}
@@ -68,7 +68,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   printWidth: ${printWidth},\n`
+										`	printWidth: ${printWidth},\n`
 									)
 								);
 							}
@@ -89,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   tabWidth: ${tabWidth},\n`
+										`	tabWidth: ${tabWidth},\n`
 									)
 								);
 							}
@@ -106,7 +106,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   trailingComma: all,\n`
+										`	trailingComma: all,\n`
 									)
 								);
 							} else {
@@ -116,7 +116,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   trailingComma: none,\n`
+										`	trailingComma: none,\n`
 									)
 								);
 							}
@@ -133,7 +133,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   endOfLine: "es5"\n};`
+										`	endOfLine: "es5"\n};`
 									)
 								);
 							} else {
@@ -143,7 +143,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   endOfLine: "auto"\n};`
+										`	endOfLine: "auto"\n};`
 									)
 								);
 							}
@@ -178,7 +178,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`{\n   "singleQuote": true,\n`
+										`{\n    "singleQuote": true,\n`
 									)
 								);
 							} else {
@@ -188,7 +188,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`{\n   "singleQuote": false,\n`
+										`{\n    "singleQuote": false,\n`
 									)
 								);
 							}
@@ -211,7 +211,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   "printWidth": ${printWidth},\n`
+										`    "printWidth": ${printWidth},\n`
 									)
 								);
 							}
@@ -232,7 +232,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   "tabWidth": ${tabWidth},\n`
+										`    "tabWidth": ${tabWidth},\n`
 									)
 								);
 							}
@@ -249,7 +249,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   "trailingComma": "all",\n`
+										`    "trailingComma": "all",\n`
 									)
 								);
 							} else {
@@ -259,7 +259,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   "trailingComma": "none",\n`
+										`    "trailingComma": "none",\n`
 									)
 								);
 							}
@@ -276,7 +276,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   "endOfLine": "lf"\n}`
+										`    "endOfLine": "lf"\n}`
 									)
 								);
 							} else {
@@ -286,7 +286,7 @@ export function activate(context: vscode.ExtensionContext) {
 											new vscode.Position(0, 0),
 											new vscode.Position(0, 0)
 										),
-										`   "endOfLine": "auto"\n}`
+										`    "endOfLine": "auto"\n}`
 									)
 								);
 							}
@@ -343,7 +343,8 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function updateStatusBar(): void {
-	statusBar.text = `$(edit) Prettier Config`;
+	statusBar.text = `$(edit)`;
+	statusBar.tooltip = "Prettier Config";
 	statusBar.show();
 }
 
