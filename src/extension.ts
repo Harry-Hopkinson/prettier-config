@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
                 const fileType = await vscode.window.showInformationMessage(
                     "Which file to generate the Prettier Config for?",
                     "Javascript",
-                    "JSON"
+                    "JSON",
                 );
                 var textEditor: vscode.TextEditor =
                     vscode.window.activeTextEditor;
@@ -26,27 +26,27 @@ export function activate(context: vscode.ExtensionContext) {
                                 await vscode.window.showInformationMessage(
                                     "Do you want to use single quotes?",
                                     "Yes",
-                                    "No"
+                                    "No",
                                 );
                             if (singleQuotes === "Yes") {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `module.exports = {\n	singleQuote: true,\n`
-                                    )
+                                        `module.exports = {\n	singleQuote: true,\n`,
+                                    ),
                                 );
                             } else {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `module.exports = {\n	singleQuote: false,\n`
-                                    )
+                                        `module.exports = {\n	singleQuote: false,\n`,
+                                    ),
                                 );
                             }
                             const printWidth = await vscode.window.showInputBox(
@@ -59,17 +59,17 @@ export function activate(context: vscode.ExtensionContext) {
                                         }
                                         return "Please enter a number";
                                     },
-                                }
+                                },
                             );
                             if (printWidth) {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `	printWidth: ${printWidth},\n`
-                                    )
+                                        `	printWidth: ${printWidth},\n`,
+                                    ),
                                 );
                             }
                             const tabWidth = await vscode.window.showInputBox({
@@ -87,64 +87,64 @@ export function activate(context: vscode.ExtensionContext) {
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `	tabWidth: ${tabWidth},\n`
-                                    )
+                                        `	tabWidth: ${tabWidth},\n`,
+                                    ),
                                 );
                             }
                             const trailingComma =
                                 await vscode.window.showInformationMessage(
                                     "Do you want to use trailing commas?",
                                     "Yes",
-                                    "No"
+                                    "No",
                                 );
                             if (trailingComma === "Yes") {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `	trailingComma: all,\n`
-                                    )
+                                        `	trailingComma: all,\n`,
+                                    ),
                                 );
                             } else {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `	trailingComma: none,\n`
-                                    )
+                                        `	trailingComma: none,\n`,
+                                    ),
                                 );
                             }
                             const endOfLine =
                                 await vscode.window.showInformationMessage(
                                     "Do you want to use end of line?",
                                     "Yes",
-                                    "No"
+                                    "No",
                                 );
                             if (endOfLine === "Yes") {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `	endOfLine: "es5"\n};`
-                                    )
+                                        `	endOfLine: "es5"\n};`,
+                                    ),
                                 );
                             } else {
                                 javascriptEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `	endOfLine: "auto"\n};`
-                                    )
+                                        `	endOfLine: "auto"\n};`,
+                                    ),
                                 );
                             }
                             const edit = await activeEditor.edit(
@@ -152,10 +152,10 @@ export function activate(context: vscode.ExtensionContext) {
                                     javascriptEditArray.forEach((edit) =>
                                         editBuilder.insert(
                                             activeEditor.selection.start,
-                                            edit.newText
-                                        )
+                                            edit.newText,
+                                        ),
                                     );
-                                }
+                                },
                             );
                         } else if (!activeEditor) {
                             updateCurrentEditor(activeEditor, textEditor);
@@ -169,27 +169,27 @@ export function activate(context: vscode.ExtensionContext) {
                                 await vscode.window.showInformationMessage(
                                     "Do you want to use single quotes?",
                                     "Yes",
-                                    "No"
+                                    "No",
                                 );
                             if (singleQuotes === "Yes") {
                                 jsonEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `{\n    "singleQuote": true,\n`
-                                    )
+                                        `{\n    "singleQuote": true,\n`,
+                                    ),
                                 );
                             } else {
                                 jsonEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `{\n    "singleQuote": false,\n`
-                                    )
+                                        `{\n    "singleQuote": false,\n`,
+                                    ),
                                 );
                             }
                             const printWidth = await vscode.window.showInputBox(
@@ -202,17 +202,17 @@ export function activate(context: vscode.ExtensionContext) {
                                         }
                                         return "Please enter a number";
                                     },
-                                }
+                                },
                             );
                             if (printWidth) {
                                 jsonEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `    "printWidth": ${printWidth},\n`
-                                    )
+                                        `    "printWidth": ${printWidth},\n`,
+                                    ),
                                 );
                             }
                             const tabWidth = await vscode.window.showInputBox({
@@ -230,64 +230,64 @@ export function activate(context: vscode.ExtensionContext) {
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `    "tabWidth": ${tabWidth},\n`
-                                    )
+                                        `    "tabWidth": ${tabWidth},\n`,
+                                    ),
                                 );
                             }
                             const trailingComma =
                                 await vscode.window.showInformationMessage(
                                     "Do you want to use trailing commas?",
                                     "Yes",
-                                    "No"
+                                    "No",
                                 );
                             if (trailingComma === "Yes") {
                                 jsonEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `    "trailingComma": "all",\n`
-                                    )
+                                        `    "trailingComma": "all",\n`,
+                                    ),
                                 );
                             } else {
                                 jsonEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `    "trailingComma": "none",\n`
-                                    )
+                                        `    "trailingComma": "none",\n`,
+                                    ),
                                 );
                             }
                             const endOfLine =
                                 await vscode.window.showInformationMessage(
                                     "Do you want to use end of line?",
                                     "Yes",
-                                    "No"
+                                    "No",
                                 );
                             if (endOfLine === "Yes") {
                                 jsonEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `    "endOfLine": "lf"\n}`
-                                    )
+                                        `    "endOfLine": "lf"\n}`,
+                                    ),
                                 );
                             } else {
                                 jsonEditArray.push(
                                     new vscode.TextEdit(
                                         new vscode.Range(
                                             new vscode.Position(0, 0),
-                                            new vscode.Position(0, 0)
+                                            new vscode.Position(0, 0),
                                         ),
-                                        `    "endOfLine": "auto"\n}`
-                                    )
+                                        `    "endOfLine": "auto"\n}`,
+                                    ),
                                 );
                             }
                             const edit = await activeEditor.edit(
@@ -295,10 +295,10 @@ export function activate(context: vscode.ExtensionContext) {
                                     jsonEditArray.forEach((edit) =>
                                         editBuilder.insert(
                                             activeEditor.selection.start,
-                                            edit.newText
-                                        )
+                                            edit.newText,
+                                        ),
                                     );
-                                }
+                                },
                             );
                         } else if (!activeEditor) {
                             updateCurrentEditor(activeEditor, textEditor);
@@ -306,36 +306,36 @@ export function activate(context: vscode.ExtensionContext) {
                         updateCurrentEditor(activeEditor, textEditor);
                     }
                     vscode.window.showInformationMessage(
-                        "Created your Prettier Configuration File 🎉"
+                        "Created your Prettier Configuration File 🎉",
                     );
                 } else if (activeEditor && textEditor.document.isDirty) {
                     vscode.window.showInformationMessage(
-                        "Please save your file before generating a Prettier Config"
+                        "Please save your file before generating a Prettier Config",
                     );
                 } else {
                     vscode.window.showErrorMessage(
-                        "Please open a file before generating a Prettier Config"
+                        "Please open a file before generating a Prettier Config",
                     );
                     updateCurrentEditor(activeEditor, textEditor);
                 }
-            }
+            },
         ),
         vscode.commands.registerCommand(
             "prettier-config.prettierConfig.updateStatusBar",
             () => {
                 updateStatusBar();
-            }
-        )
+            },
+        ),
     );
     statusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
-        100
+        100,
     );
     statusBar.command = "prettier-config.prettierConfig";
     context.subscriptions.push(statusBar);
     context.subscriptions.push(
         vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
-        vscode.window.onDidChangeTextEditorSelection(updateStatusBar)
+        vscode.window.onDidChangeTextEditorSelection(updateStatusBar),
     );
     updateStatusBar();
     var activeEditor: vscode.TextEditor = vscode.window.activeTextEditor;
@@ -354,7 +354,7 @@ function deactivate() {
 
 function updateCurrentEditor(
     activeEditor: vscode.TextEditor,
-    textEditor: vscode.TextEditor
+    textEditor: vscode.TextEditor,
 ): void {
     activeEditor = vscode.window.activeTextEditor;
     textEditor = vscode.window.activeTextEditor;
