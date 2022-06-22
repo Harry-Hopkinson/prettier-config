@@ -1,21 +1,21 @@
 name: Apple Compiler 🍎
 
 on:
-    push:
-        branches:
-            - main
-            - master
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
-    build:
-        runs-on: macos-latest
-        strategy:
-            matrix:
-                yarn-version: [14, 15, 16]
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        yarn-version: [14, 15, 16]
 
-        steps:
-            - uses: actions/checkout@v3
-            - name: Typescript Compiler
-              run: |
-                  npm install
-                  npm run compile
+    steps:
+      - uses: actions/checkout@v3
+      - name: Typescript Compiler
+        run: |
+          yarm
+          yarn compile

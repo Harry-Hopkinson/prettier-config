@@ -1,21 +1,21 @@
 name: Linter ✏️
 
 on:
-    push:
-        branches:
-            - main
-            - master
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [14, 15, 16]
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 15, 16]
 
-        steps:
-            - uses: actions/checkout@v3
-            - name: Typescript Linting
-              run: |
-                  npm install prettier -g
-                  prettier --check .
+    steps:
+      - uses: actions/checkout@v3
+      - name: Typescript Linting
+        run: |
+          npm install prettier -g
+          prettier --check .
