@@ -17,5 +17,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: Typescript Compiler
         run: |
-          yarm
+          yarn
           yarn compile
